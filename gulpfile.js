@@ -6,6 +6,7 @@ var gulp = require("gulp"),
 	server = require("gulp-webserver");
 	
 var page_files = "src/page/**/*.html",
+	ect_watch_files = "src/{layout,page,partial}/**/*.html",
 	sass_files = "src/sass/**/*.{sass,scss}",
 	image_files = "src/image/**/*.{jpg,png,svg,gif}",
 	script_files = "src/script/**/*.js";
@@ -17,7 +18,7 @@ gulp.task("build", ["ect", "sass", "image", "script"]);
 gulp.task("test", ["build", "watch"]);
 
 gulp.task("watch", function () {
-	gulp.watch(page_files, ["ejs"]);
+	gulp.watch(ect_watch_files, ["ejs"]);
 	gulp.watch(sass_files, ["sass"]);
 	gulp.watch(image_files, ["image"]);
 	gulp.watch(script_files, ["script"]);
