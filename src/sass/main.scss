@@ -10,8 +10,9 @@ body {
 	margin: 0;
 	height: 100%;
 	color: $color-base;
-	font-family: "Open Sans";
+	font-family: "Open Sans", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Meiryo", "Segoe UI";
 	background-color: #c00;
+	min-width: 768px;
 }
 
 a {
@@ -30,6 +31,12 @@ a {
 h1 {
 	margin: 0;
 	padding: 50px 40px 10px 320px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 nav.main-menu {

@@ -7,7 +7,8 @@ var gulp = require("gulp"),
 	server = require("gulp-webserver"),
 	rimraf = require("rimraf");
 	
-var page_files = "src/page/**/*.html",
+var page_files = "src/page/*.html",
+	article_page_files = "src/article/*.html",
 	watch_page_files = "src/**/*.html",
 	sass_files = "src/sass/**/*.{sass,scss}",
 	image_files = "src/image/**/*.{jpg,png,svg,gif}",
@@ -57,6 +58,15 @@ gulp.task("html", function () {
 		}))
 		.pipe(minifyHTML())
 		.pipe(gulp.dest("htdocs"));
+	gulp.src(article_page_files)
+		.pipe(plumber({
+			errorHandler: notify.onError("Error: <%= error.message %>")
+		}))
+		.pipe(ect({
+			ext: ".html"
+		}))
+		.pipe(minifyHTML())
+		.pipe(gulp.dest("htdocs/article"));
 });
 gulp.task("sass", function () {
 	gulp.src(sass_files)
