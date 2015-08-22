@@ -1,5 +1,6 @@
 # nodejs
 node_modules/
+npm-*.log
 
 #bower
 bower_components/
