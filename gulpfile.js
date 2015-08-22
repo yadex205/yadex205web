@@ -1,24 +1,25 @@
 var gulp = require("gulp"),
 	plumber = require("gulp-plumber"),
 	notify = require("gulp-notify"),
-	ect = require("gulp-ect"),
+	ejs = require("gulp-ejs"),
 	sass = require("gulp-sass"),
-	server = require("gulp-webserver");
+	server = require("gulp-webserver"),
+	rimraf = require("rimraf");
 	
 var page_files = "src/page/**/*.html",
-	ect_watch_files = "src/{layout,page,partial}/**/*.html",
+	page_watch_files = "src/{layout,page,partial}/**/*.html",
 	sass_files = "src/sass/**/*.{sass,scss}",
 	image_files = "src/image/**/*.{jpg,png,svg,gif}",
 	script_files = "src/script/**/*.js";
 	
 gulp.task("default", ["build"]);
 
-gulp.task("build", ["ect", "sass", "image", "script"]);
+gulp.task("build", ["html", "sass", "image", "script"]);
 
 gulp.task("test", ["build", "watch"]);
 
 gulp.task("watch", function () {
-	gulp.watch(ect_watch_files, ["ejs"]);
+	gulp.watch(page_watch_files, ["html"]);
 	gulp.watch(sass_files, ["sass"]);
 	gulp.watch(image_files, ["image"]);
 	gulp.watch(script_files, ["script"]);
@@ -30,16 +31,26 @@ gulp.task("watch", function () {
 		}));
 });
 
-gulp.task("ect", function (callback) {
+gulp.task("clean", function (cb) {
+	rimraf("htdocs", cb);
+});
+
+gulp.task("html", function (callback) {
 	gulp.src(page_files)
-		.pipe(ect({
-			ext: ".html"
+		.pipe(plumber({
+			errorHandler: notify.onError("Error: <%= error.message %>")
 		}))
+		.pipe(ejs())
 		.pipe(gulp.dest("htdocs"));
 });
 gulp.task("sass", function (callback) {
 	gulp.src(sass_files)
-		.pipe(sass())
+		.pipe(plumber({
+			errorHandler: notify.onError("Error: <%= error.message %>")
+		}))
+		.pipe(sass({
+			outputStyle: "compressed"
+		}))
 		.pipe(gulp.dest("htdocs/css"));
 });
 gulp.task("image", function (callback) {
