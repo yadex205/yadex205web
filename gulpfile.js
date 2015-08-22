@@ -14,7 +14,8 @@ var page_files = "src/page/**/*.html",
 	bower_components = [
 		"bower_components/bootstrap/dist/css/bootstrap.min.css",
 		"bower_components/bootstrap/dist/js/bootstrap.min.js",
-		"bower_components/jquery/dist/jquery.min.js"
+		"bower_components/jquery/dist/jquery.min.js",
+		"bower_components/font-awesome/css/font-awesome.min.css"
 	];
 	
 gulp.task("default", ["build"]);
@@ -36,6 +37,8 @@ gulp.task("test", ["build"], function () {
 gulp.task("init", function () {
 	gulp.src(bower_components)
 		.pipe(gulp.dest("htdocs/components"));
+	gulp.src("bower_components/font-awesome/fonts/*")
+		.pipe(gulp.dest("htdocs/components/fonts"));
 });
 
 gulp.task("clean", function (cb) {

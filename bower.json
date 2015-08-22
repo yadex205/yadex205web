@@ -5,7 +5,8 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "~3.3.5"
+    "bootstrap": "~3.3.5",
+    "font-awesome": "~4.4.0"
   },
   "devDependencies": {}
 }
