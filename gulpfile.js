@@ -10,7 +10,12 @@ var page_files = "src/page/**/*.html",
 	watch_page_files = "src/**/*.html",
 	sass_files = "src/sass/**/*.{sass,scss}",
 	image_files = "src/image/**/*.{jpg,png,svg,gif}",
-	script_files = "src/script/**/*.js";
+	script_files = "src/script/**/*.js",
+	bower_components = [
+		"bower_components/bootstrap/dist/css/bootstrap.min.css",
+		"bower_components/bootstrap/dist/js/bootstrap.min.js",
+		"bower_components/jquery/dist/jquery.min.js"
+	];
 	
 gulp.task("default", ["build"]);
 
@@ -28,7 +33,12 @@ gulp.task("test", ["build"], function () {
 	gulp.watch(script_files, ["script"]);
 });
 
-gulp.task("clean", function (cb) {
+gulp.task("init", function () {
+	gulp.src(bower_components)
+		.pipe(gulp.dest("htdocs/components"));
+});
+
+gulp.task("clean", function () {
 	rimraf("htdocs", cb);
 });
 
