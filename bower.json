@@ -1,0 +1,11 @@
+{
+  "name": "yadex205-web",
+  "description": "",
+  "author": "Yadex205 <yadex205@outlook.com>",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  },
+  "devDependencies": {}
+}
