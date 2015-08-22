@@ -2,6 +2,7 @@ var gulp = require("gulp"),
 	plumber = require("gulp-plumber"),
 	notify = require("gulp-notify"),
 	ect = require("gulp-ect"),
+	minifyHTML = require("gulp-minify-html"),
 	sass = require("gulp-sass"),
 	server = require("gulp-webserver"),
 	rimraf = require("rimraf");
@@ -54,6 +55,7 @@ gulp.task("html", function () {
 		.pipe(ect({
 			ext: ".html"
 		}))
+		.pipe(minifyHTML())
 		.pipe(gulp.dest("htdocs"));
 });
 gulp.task("sass", function () {
