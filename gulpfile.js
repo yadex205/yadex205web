@@ -38,7 +38,7 @@ gulp.task("init", function () {
 		.pipe(gulp.dest("htdocs/components"));
 });
 
-gulp.task("clean", function () {
+gulp.task("clean", function (cb) {
 	rimraf("htdocs", cb);
 });
 

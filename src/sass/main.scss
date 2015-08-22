@@ -1,6 +1,8 @@
 $color-base: #222;
+$transition-base: 0.3s;
 
 html {
+	margin: 0;
 	height: 100%;
 }
 
@@ -9,24 +11,42 @@ body {
 	height: 100%;
 	color: $color-base;
 	font-family: "Open Sans";
-	font-weight: 900;
 	background-color: #c00;
+}
+
+a {
+	color: inherit;
+	opacity: 0.8;
+	&:hover {
+		color: inherit;
+		opacity: 0.9
+	}
+	&:active {
+		color: inherit;
+		opacity: 1.0;
+	}
+}
+
+h1 {
+	margin: 0;
+	padding: 50px 40px 10px 320px;
 }
 
 nav.main-menu {
 	position: fixed;
 	top: 0; left: 0;
-	width: 320px; height: 320px;
+	width: 300px; height: 300px;
 	padding: 50px 50px 50px 50px;
 	border-style: solid;
 	border-color: $color-base;
 	border-width: 0 20px 2px 0;
 	box-sizing: border-box;
 	font-size: 15px;
+	font-weight: 900;
 	border-radius: 0 0 100% 0;
 	opacity: 0.5;
 	background-color: transparent;
-	transition: opacity 0.2s, border-color 0.2s, background-color 0.2s;
+	transition: opacity $transition-base, border-color $transition-base, background-color $transition-base;
 	&:hover {
 		opacity: 1.0;
 		background-color: rgba(255,255,255,0.8);
@@ -45,15 +65,25 @@ nav.main-menu {
 	}
 }
 
-div.fullscreen {
-	display: table;
-	width: 100%;
-	height: 100%;
-	div.fullscreen-container {
-		display: table-cell;
-		vertical-align: middle;
-		&.center {
-			text-align: center;
+footer {
+	padding: 20px 40px 20px 320px;
+	color: #500;
+}
+
+section {
+	&.normal {
+		padding: 10px 40px 10px 320px;
+	}
+	&.fullscreen {
+		display: table;
+		width: 100%;
+		height: 100%;
+		div.fullscreen-container {
+			display: table-cell;
+			vertical-align: middle;
+			&.center {
+				text-align: center;
+			}
 		}
 	}
 }
